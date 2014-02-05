@@ -1,0 +1,18 @@
+Variable :
+
+Definition by life cycle :
+	m_ : class member variable, e.g. m_data. 
+	c_ : class const variable, e.g. c_data.
+	a_ : argument variable, that is function need to calculate, e.g. a_data.
+	p_ : parameter variable, that is definition the function or class.
+	abcd : local variable, lower-case at first character, e.g. action.
+	ABCD : static or global variable, upper-case at first character, e.g. ACTION.
+
+Definition by use :
+	i, j, k, etc. : counter variable, single character, that is a variable for LOOP.
+	isXxx : boolean variable, e.g. isAction.
+
+Function : 
+	Xxx : class method, upper-case at first character, e.g. Action().
+	get/setXxx : get or set attribute, argument variable and return variable must the same type, e.g. getType() / setType().
+	onXxx : event callback function, e.g. onClick().
