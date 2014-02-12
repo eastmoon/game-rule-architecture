@@ -1,18 +1,28 @@
 Variable :
 
-Definition by life cycle :
+ - Definition by life cycle :
 	m_ : class member variable, e.g. m_data. 
 	c_ : class const variable, e.g. c_data.
 	a_ : argument variable, that is function need to calculate, e.g. a_data.
 	p_ : parameter variable, that is definition the function or class.
-	abcd : local variable, lower-case at first character, e.g. action.
-	ABCD : static or global variable, upper-case at first character, e.g. ACTION.
+	xxxYyy : local variable, lower-case at the word first character, e.g. actionBody.
+	XXX_YYY : static or global variable, upper-case at the string every character, e.g. ACTION_BODY.
 
-Definition by use :
+ - Definition by display object type :
+	mc_ : Movie Clips component of flash display object.
+	tf_ : Text Field component of flash display object.
+
+ - Definition by use :
 	i, j, k, etc. : counter variable, single character, that is a variable for LOOP.
 	isXxx : boolean variable, e.g. isAction.
 
 Function : 
-	Xxx : class method, upper-case at first character, e.g. Action().
+	Xxx : class method, pper-case the first character of each word, e.g. Action().
 	get/setXxx : get or set attribute, argument variable and return variable must the same type, e.g. getType() / setType().
 	onXxx : event callback function, e.g. onClick().
+	register/remove/retrieve/hasXxx : The API function of architecture application core, it is follow PureMVC naming guidelines, e.g. registerWindow().
+
+Class : 
+	XxxYyy : class name, upper-case the first character of each word, e.g. MyClass.
+	XXXYyy : The XXX space-name for class name, XXX is an abbreviation, e.g. GMyClass.
+	IXxxYyy : interface, upper-case an "i" at the string first character, e.g. IMyClass.
