@@ -29,7 +29,7 @@ package org.gra.view.WindowSection.Core
 	import org.puremvc.as3.interfaces.INotification;
 	import org.gra.controller.Progress.IProgressController;
 	import org.gra.controller.WSProgressFlow.IWSPFSection;
-	import org.gra.controller.DynamicDetection.IDynamicDetection;
+	import org.gra.view.DynamicDetection.IDynamicDetection;
 	import org.gra.model.RuleModel.Core.RMNotifyDispatcher;
 	import org.gra.model.RuleModel.Core.RMNotification;
 	import org.gra.view.WindowSection.Interface.IWindow;

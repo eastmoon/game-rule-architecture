@@ -15,7 +15,7 @@
  	Your reuse is governed by the Creative Commons Attribution 3.0 License
 */
 
-package org.gra.controller.DynamicDetection
+package org.gra.view.DynamicDetection
 {	
 	/*import：Flash內建元件庫*/
 	/*external import：外部元件庫、開發人員自定元件庫*/

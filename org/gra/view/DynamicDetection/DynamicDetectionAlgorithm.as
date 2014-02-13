@@ -15,13 +15,13 @@
  	Your reuse is governed by the Creative Commons Attribution 3.0 License
 */
 
-package org.gra.controller.DynamicDetection
+package org.gra.view.DynamicDetection
 {
 	/*import*/
 	/*import：Flash內建元件庫*/
 	
 	/*external import：外部元件庫、開發人員自定元件庫*/
-	import org.gra.controller.DynamicDetection.IDynamicDetection;
+	import org.gra.view.DynamicDetection.IDynamicDetection;
 	import org.gra.model.RuleModel.Core.RMNotification;
 	import org.gra.model.RuleModel.Core.RMNotifyDispatcher;
 	
