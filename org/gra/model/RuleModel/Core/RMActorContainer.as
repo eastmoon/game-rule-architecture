@@ -1,9 +1,6 @@
 ﻿/*
- Game Rule Architure Demo - Flex Application Skeleton 
- Copyright (c) 2013 EastMoon<jacky_eastmoon@hotmail.com>
- Your reuse is governed by the Creative Commons Attribution 3.0 License
-
 	Info:
+		- Game Rule Architecture kernel code.
 		- Game Rule Architure base actor object container.
 		
 	Useage:
@@ -12,11 +9,15 @@
 		- container 		: [Read-only]取得Actor存放容器
 		
 	Date:
-		- 2013.03.14
+		- 2013.03.20
 		
 	Author:
-		- Name : EastMoon
+		- Name : Jacky Chen 
+		- Nickname : EastMoon
 		- Email : jacky_eastmoon@hotmail.com
+		
+ 	Copyright (c) 2013 Jacky Chen
+ 	Your reuse is governed by the Creative Commons Attribution 3.0 License
 */
 
 package org.gra.model.RuleModel.Core
@@ -49,7 +50,7 @@ package org.gra.model.RuleModel.Core
         }
 		/**public function：對外公開函數*/
 		/**
-     	 * <P>Add <code>RMActor</code> in container.</P>
+     	 * <P>Add <code>IRMActor</code> in container.</P>
       	 */
 		public function AddActor( a_actor : IRMActor ) : void
 		{
@@ -72,7 +73,7 @@ package org.gra.model.RuleModel.Core
 			}
 		}
 		/**
-     	 * <P>Remove <code>RMActor</code> from container.</P>
+     	 * <P>Remove <code>IRMActor</code> from container.</P>
       	 */
 		public function RemoveActor( a_actor : IRMActor ) : void
 		{
@@ -94,7 +95,7 @@ package org.gra.model.RuleModel.Core
 		/**write only：唯寫*/
 		/**read only：唯讀*/
 		/**
-     	 * <P>[Read-only]Get <code>RMActor</code> container.</P>
+     	 * <P>[Read-only]Get <code>IRMActor</code> container.</P>
       	 */
 		public function getContainer() : Array
 		{

@@ -23,7 +23,7 @@ package org.gra.model.RuleModel.Interface
 	{		
 		/**public function：對外公開函數*/
 		/**
-     	 * <P>Retrieve a <code>RMSpace</code> that this <code>RMActor</code> addation.</p>
+     	 * <P>Retrieve a <code>IRMSpaceVar</code> that this <code>RMActor</code> addation.</p>
       	 */
 		function RetrieveSpaceVar( a_name : String ) : IRMSpaceVar
 		/**public event function：公開事件函數*/
@@ -31,7 +31,7 @@ package org.gra.model.RuleModel.Interface
 		/**write only：唯寫*/
 		/**read only：唯讀*/
 		/**
-     	 * <P>[Read-only]Get <code>ASESpace</code> container list.</P>
+     	 * <P>[Read-only]Get <code>IRMSpace</code> container list.</P>
       	 */
 		function getSpaces() : Array
 		/**read/write：讀寫*/

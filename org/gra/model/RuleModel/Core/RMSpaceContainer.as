@@ -1,9 +1,7 @@
 ﻿/*
- Game Rule Architure Demo - Flex Application Skeleton 
- Copyright (c) 2013 EastMoon<jacky_eastmoon@hotmail.com>
- Your reuse is governed by the Creative Commons Attribution 3.0 License
 
 	Info:
+		- Game Rule Architecture kernel code.
 		- Game Rule Architure base space object conatiner.
 		
 	Useage:
@@ -12,11 +10,15 @@
 		- container 		: [Read-only]取得Space存放容器
 		
 	Date:
-		- 2013.03.14
+		- 2014.02.20
 		
 	Author:
-		- Name : EastMoon
+		- Name : Jacky Chen 
+		- Nickname : EastMoon
 		- Email : jacky_eastmoon@hotmail.com
+		
+ 	Copyright (c) 2013 Jacky Chen
+ 	Your reuse is governed by the Creative Commons Attribution 3.0 License
 */
 
 package org.gra.model.RuleModel.Core
@@ -38,10 +40,14 @@ package org.gra.model.RuleModel.Core
 		/**display object variable：顯示物件變數，如MovieClip等*/
 		
 		/**constructor：建構值*/
-        public function RMSpaceContainer()
+        public function RMSpaceContainer( a_spaceVar : IRMSpaceVar = null )
 		{
             //trace("RMSpaceContainer");
 			
+			// Initial space variable
+			if( a_spaceVar == null )
+				this.setSpaceVar( new RMSpaceVar() );
+			this.setSpaceVar( a_spaceVar );
 			// Initial container
 			this.m_container = new Array();
 			// Initial notify

@@ -38,19 +38,29 @@ package org.gra.model.RuleModel.Core
 		private var m_height : Number;
 		private var m_depth : Number;
 		/**constructor：建構值*/
-		public function RMSpaceVar( a_name : String = "", a_space : IRMSpace = null )
+		public function RMSpaceVar( a_x : Number = 0, a_y : Number = 0, a_z : Number = 0, a_width : Number = 0, a_height : Number = 0, a_depth : Number = 0, a_space : IRMSpace = null, a_name : String = "" )
 		{
+			// 儲存資訊
+			this.setX( a_x );
+			this.setY( a_y );
+			this.setZ( a_z );
+			this.setWidth( a_width );
+			this.setHeight( a_height );
+			this.setDepth( a_depth );
 			// 儲存所屬 Space
 			this.m_space = a_space;
 			// 儲存事件(Event)名稱與模組(Module)資料
-			this.RegisterInfo( a_name, a_space.getModule() );
+			if( a_space != null )
+				this.RegisterInfo( a_name, a_space.getModule() );
+			else
+				this.RegisterInfo( a_name, null );
 		}
 		
 		/**public function：對外公開函數*/
 		/**write only：唯寫*/
 		/**read only：唯讀*/
 		/**
-    	 * <P>Take back <code>RMSpace</code> object point.</P>
+    	 * <P>Take back <code>IRMSpace</code> object point.</P>
      	*/
 		public function getSpace() : IRMSpace
 		{
@@ -73,11 +83,11 @@ package org.gra.model.RuleModel.Core
      	 */
 		public function setY( a_value : Number ) : void
 		{
-			this.m_x = a_value;
+			this.m_y = a_value;
 		}
 		public function getY() : Number
 		{
-			return this.m_x;
+			return this.m_y;
 		}
 		/**
     	 * <P>Set and Get ths location.z .</P>

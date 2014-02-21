@@ -3,7 +3,7 @@
 		- Game Rule Architecture kernel code.
 		
 	Date:
-		- 2014.02.12
+		- 2014.02.20
 		
 	Author:
 		- Name : Jacky Chen 
@@ -23,11 +23,11 @@ package org.gra.model.RuleModel.Interface
 	{		
 		/**public function：對外公開函數*/
 		/**
-     	 * <P>Add <code>RMActor</code> in container.</P>
+     	 * <P>Add <code>IRMActor</code> in container.</P>
       	 */
 		function AddActor( a_actor : IRMActor ) : void
 		/**
-     	 * <P>Remove <code>RMActor</code> from container.</P>
+     	 * <P>Remove <code>IRMActor</code> from container.</P>
       	 */
 		function RemoveActor( a_actor : IRMActor ) : void
 		/**public event function：公開事件函數*/
@@ -35,7 +35,7 @@ package org.gra.model.RuleModel.Interface
 		/**write only：唯寫*/
 		/**read only：唯讀*/
 		/**
-     	 * <P>[Read-only]Get <code>RMActor</code> container.</P>
+     	 * <P>[Read-only]Get <code>IRMActor</code> container.</P>
       	 */
 		function getContainer() : Array
 		/**read/write：讀寫*/

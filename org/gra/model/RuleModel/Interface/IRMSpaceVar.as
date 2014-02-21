@@ -3,7 +3,7 @@
 		- Game Rule Architecture kernel code.
 		
 	Date:
-		- 2014.02.12
+		- 2014.02.20
 		
 	Author:
 		- Name : Jacky Chen 
@@ -27,7 +27,7 @@ package org.gra.model.RuleModel.Interface
 		/**write only：唯寫*/
 		/**read only：唯讀*/
 		/**
-    	 * <P>Take back <code>RMSpace</code> object point.</P>
+    	 * <P>Take back <code>IRMSpace</code> object point.</P>
      	*/
 		function getSpace() : IRMSpace
 		/**read/write：讀寫*/

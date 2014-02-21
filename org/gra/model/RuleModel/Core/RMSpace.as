@@ -9,7 +9,7 @@
 		- actors 			: [Read-only]取得Actor存放容器
 		
 	Date:
-		- 2013.03.14
+		- 2014.02.20
 		
 	Author:
 		- Name : Jacky Chen 
@@ -33,27 +33,33 @@ package org.gra.model.RuleModel.Core
      * <P>Tha base space object in Rule Model.</P>
      */
 	 
-    public class RMSpace extends RMNotifyDispatcher implements IRMSpace
+    public class RMSpace extends RMNotifyDispatcher implements IRMSpace, IRMSpaceVar
     {
         /**static const variable : 靜態常數變數*/
 		/**const variable：常數變數*/
 		/**function variable：函數變數*/
 		/**member variable：物件內部操作變數*/
 		private var m_actorContainer : Array;
+		private var m_spaceVar : IRMSpaceVar;
 		/**display object variable：顯示物件變數，如MovieClip等*/
 		
 		/**constructor：建構值*/
-        public function RMSpace()
+        public function RMSpace( a_spaceVar : IRMSpaceVar = null )
 		{
             //trace("RMSpace");
+			// Initial space variable
+			if( a_spaceVar == null )
+				this.setSpaceVar( new RMSpaceVar() );
+			this.setSpaceVar( a_spaceVar );
+			
 			// Initial container
 			this.m_actorContainer = new Array();
         }
 		/**public function：對外公開函數*/
 		/**
-     	 * <P>Add <code>RMActor</code> in RMSpace.</P>
+     	 * <P>Add <code>IRMActor</code> in RMSpace.</P>
       	 */
-		public function AddActor( a_actor : IRMActor ) : void
+		public function AddActor( a_actor : IRMActor, a_var : IRMSpaceVar = null ) : void
 		{
 			var isExist : Boolean = false;
 			var i : Number = 0;
@@ -69,13 +75,15 @@ package org.gra.model.RuleModel.Core
 				if( !isExist )
 				{
 					this.m_actorContainer.push(a_actor);
-					a_actor.SendNotify(new RMNotification( RMNotify.ADD_TO_SPACE, null, this ));
+					if( a_var == null )
+						a_var = new RMSpaceVar( 0, 0, 0, 0, 0, 0, this, this.getName() );
+					a_actor.SendNotify(new RMNotification( RMNotify.ADD_TO_SPACE, null, a_var ));
 				}
 			}
 		}
 		
 		/**
-     	 * <P>Remove <code>RMActor</code> from RMSpace.</P>
+     	 * <P>Remove <code>IRMActor</code> from RMSpace.</P>
       	 */
 		public function RemoveActor( a_actor : IRMActor ) : void
 		{
@@ -95,17 +103,17 @@ package org.gra.model.RuleModel.Core
 		}
 		
 		/**
-     	 * <P>Change Actor corrdinate to Space corrdinate.</P>
+     	 * <P>Transform global coordinate to the RMSpace coordinate.</P>
       	 */
-		public function SpaceCoordinate( a_local : Point ) : Point
+		public function TransformCoordinate( a_spaceVar : IRMSpaceVar ) : IRMSpaceVar
 		{
 			return null;
 		}
 		
 		/**
-     	 * <P>Retrieve all object ( <code>RMActor</code> or <code>RMSpace</code> ) in the range.</P>
+     	 * <P>Retrieve all object ( <code>IRMActor</code> or <code>IRMSpace</code> ) in the RMSpace.</P>
       	 */
-		public function RetrieveRangeObject( a_rect : Rectangle ) : Array
+		public function RetrieveObject( a_spaceVar : IRMSpaceVar ) : Array
 		{
 			return null;
 		}
@@ -121,13 +129,97 @@ package org.gra.model.RuleModel.Core
 		/**write only：唯寫*/
 		/**read only：唯讀*/
 		/**
-     	 * <P>[Read-only]Get <code>RMActor</code> container.</P>
+     	 * <P>[Read-only]Get <code>IRMActor</code> container.</P>
       	 */
 		public function getActors() : Array
 		{
 			return this.m_actorContainer;
 		}
+		/**
+    	 * <P>Implement IRMSpaceVars : Take back <code>RMSpace</code> object point.</P>
+     	*/
+		public function getSpace() : IRMSpace
+		{
+			return this;
+		}
 		/**read/write：讀寫*/
+		/**
+    	 * <P>Protected function : Set and Get ths space variable, it only use with inherit class.</P>
+     	 */
+		protected function setSpaceVar( a_spaceVar : IRMSpaceVar ) : void
+		{
+			this.m_spaceVar = a_spaceVar;
+		}
+		protected function getSpaceVar() : IRMSpaceVar
+		{
+			return this.m_spaceVar;
+		}
+		/**
+    	 * <P>Implement IRMSpaceVars : Set and Get ths location.x .</P>
+     	 */
+		public function setX( a_value : Number ) : void
+		{
+			this.m_spaceVar.setX( a_value );
+		}
+		public function getX() : Number
+		{
+			return this.m_spaceVar.getX();
+		}
+		/**
+    	 * <P>Implement IRMSpaceVars : Set and Get ths location.y .</P>
+     	 */
+		public function setY( a_value : Number ) : void
+		{
+			this.m_spaceVar.setY( a_value );
+		}
+		public function getY() : Number
+		{
+			return this.m_spaceVar.getY();
+		}
+		/**
+    	 * <P>Implement IRMSpaceVars : Set and Get ths location.z .</P>
+     	 */
+		public function setZ( a_value : Number ) : void
+		{
+			this.m_spaceVar.setZ( a_value );
+		}
+		public function getZ() : Number
+		{
+			return this.m_spaceVar.getZ();
+		}
+		/**
+    	 * <P>Implement IRMSpaceVars : Set and Get ths Size.width .</P>
+     	 */
+		public function setWidth( a_value : Number ) : void
+		{
+			this.m_spaceVar.setWidth( a_value );
+		}
+		public function getWidth() : Number
+		{
+			return this.m_spaceVar.getWidth();
+		}
+		/**
+    	 * <P>Implement IRMSpaceVars : Set and Get ths Size.height .</P>
+     	 */
+		public function setHeight( a_value : Number ) : void
+		{
+			this.m_spaceVar.setHeight( a_value );
+		}
+		public function getHeight() : Number
+		{
+			return this.m_spaceVar.getHeight();
+		}
+		/**
+    	 * <P>Implement IRMSpaceVars : Set and Get ths Size.depth .</P>
+     	 */
+		public function setDepth( a_value : Number ) : void
+		{
+			this.m_spaceVar.setDepth( a_value );
+		}
+		public function getDepth() : Number
+		{
+			return this.m_spaceVar.getDepth();
+		}
 		/**private function：私用函數*/
 		/**private event function：私用事件函數*/
 		/**javascript const variable：JavaScript 常數變數*/

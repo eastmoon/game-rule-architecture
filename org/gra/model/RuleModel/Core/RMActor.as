@@ -4,7 +4,7 @@
 		- Game Rule Architure base actor object.
 		
 	Date:
-		- 2013.03.14
+		- 2014.02.20
 		
 	Author:
 		- Name : Jacky Chen 
@@ -45,12 +45,12 @@ package org.gra.model.RuleModel.Core
 			// Initial container
 			this.m_spaceVarContainer = new Object();
 			// Initial notify
-			this.AddNotify(RMNotify.ADD_TO_SPACE, onNotifyAddSpace);
-			this.AddNotify(RMNotify.REMOVE_FROM_SPACE, onNotifyRemoveSpace);
+			this.AddNotify(RMNotify.ADD_TO_SPACE, onNotifyAddToSpace);
+			this.AddNotify(RMNotify.REMOVE_FROM_SPACE, onNotifyRemoveFormSpace);
         }
 		/**public function：對外公開函數*/
 		/**
-     	 * <P>Override function, Set a name and <code>RMModule</code> who is this <code>RMModule</code> object already registered in.</p>
+     	 * <P>Override function, Set a name and <code>IRMModule</code> who is this <code>IRMModule</code> object already registered in.</p>
       	 */
 		public override function RegisterInfo( a_name : String = "" , a_model : IRMModule = null) : void
 		{
@@ -58,7 +58,7 @@ package org.gra.model.RuleModel.Core
 				super.RegisterInfo(a_name, a_model);
 		}
 		/**
-     	 * <P>Retrieve a <code>RMSpace</code> that this <code>RMActor</code> addation.</p>
+     	 * <P>Retrieve a <code>IRMSpaceVar</code> that this <code>RMActor</code> addation.</p>
       	 */
 		public function RetrieveSpaceVar( a_name : String ) : IRMSpaceVar
 		{
@@ -70,7 +70,7 @@ package org.gra.model.RuleModel.Core
 		/**write only：唯寫*/
 		/**read only：唯讀*/
 		/**
-     	 * <P>[Read-only]Get <code>ASESpace</code> container list.</P>
+     	 * <P>[Read-only]Get <code>IRMSpace</code> container list.</P>
       	 */
 		public function getSpaces() : Array
 		{
@@ -78,30 +78,28 @@ package org.gra.model.RuleModel.Core
 			var spaceName : String = "";
 			for( spaceName in this.m_spaceVarContainer )
 			{
-				list.push( this.m_spaceVarContainer[ spaceName ] );
+				list.push( (this.m_spaceVarContainer[ spaceName ] as IRMSpaceVar).getSpace() );
 			}
 			return list;
 		}
 		/**read/write：讀寫*/
 		/**private function：私用函數*/
 		/**private event function：私用事件函數*/
-		private function onNotifyAddSpace( a_notify : IRMNotification ) : void
+		private function onNotifyAddToSpace( a_notify : IRMNotification ) : void
 		{
-			var isExist : Boolean = false;
-			var targetSpace : IRMSpace = a_notify.getNotifier() as IRMSpace;
+			var targetSpace : IRMSpaceVar = a_notify.getNotifier() as IRMSpaceVar;
 			if( targetSpace != null )
 			{
 				// 避免重複物件存在
 				if( this.m_spaceVarContainer[ targetSpace.getName() ] == undefined || this.m_spaceVarContainer[ targetSpace.getName() ] == null )
 				{
-					this.m_spaceVarContainer[ targetSpace.getName() ] = new RMSpaceVar( targetSpace.getName(), targetSpace );
+					this.m_spaceVarContainer[ targetSpace.getName() ] = targetSpace;
 				}
 			}
 		}
-		private function onNotifyRemoveSpace( a_notify : IRMNotification ) : void
+		private function onNotifyRemoveFormSpace( a_notify : IRMNotification ) : void
 		{
-			var i : Number = 0;
-			var targetSpace : IRMSpace = a_notify.getNotifier() as IRMSpace;
+			var targetSpace : IRMSpaceVar = a_notify.getNotifier() as IRMSpaceVar;
 			if( targetSpace != null && this.m_spaceVarContainer[ targetSpace.getName() ] != undefined && this.m_spaceVarContainer[ targetSpace.getName() ] != null )
 			{
 				this.m_spaceVarContainer[ targetSpace.getName() ] = null;
