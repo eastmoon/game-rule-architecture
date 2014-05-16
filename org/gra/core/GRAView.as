@@ -80,6 +80,25 @@ package org.gra.core
 		{
 			return this.m_windowMap[ a_windowName ];
 		}
+		
+		/**
+		 * Retrieve all <code>IWindow</code> name registry in <code>GRAView</code>.
+		 * 
+		 * @return the name list.
+		 */
+		public function retrieveNameRegistryOfWindow() : Array
+		{
+			var registry : Array = new Array();
+			var nameString : String = "";
+			
+			for( nameString in this.m_windowMap )
+			{
+				if( nameString != "" )
+					registry.push( nameString );
+			}
+			
+			return registry;
+		}
 
 		/**
 		 * Remove an <code>IWindow</code> from the <code>GRAView</code>.
@@ -138,6 +157,27 @@ package org.gra.core
 		public function retrieveSection( a_sectionName:String ) : ISection
 		{
 			return this.retrieveMediator( a_sectionName ) as ISection;
+		}
+		
+		/**
+		 * Retrieve all <code>ISection</code> name registry in <code>GRAView</code>.
+		 * 
+		 * @return the name list.
+		 */
+		public function retrieveNameRegistryOfSection() : Array
+		{
+			var registry : Array = new Array();
+			var target : ISection = null;
+			var nameString : String = "";
+			
+			for( nameString in this.mediatorMap )
+			{
+				target = this.mediatorMap[ nameString ] as ISection;
+				if( target != null )
+					registry.push( target.getMediatorName() );
+			}
+			
+			return registry;
 		}
 
 		/**

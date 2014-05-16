@@ -10,7 +10,7 @@
 		- FunctionName1 : function describe
 		
 	Date:
-		- 2013.04.10
+		- 2014.05.15
 		
 	Author:
 		- Name : EastMoon
@@ -36,6 +36,7 @@ package org.gra.model.RuleModel.Core
 		private var m_events : Object;
 		private var m_actors : Object;
 		private var m_spaces : Object;
+		private var m_dataSets : Object;
 		/**display object variable：顯示物件變數，如MovieClip等*/
 		
 		/**constructor：建構值*/
@@ -45,34 +46,35 @@ package org.gra.model.RuleModel.Core
 			this.m_actors = new Object();
 			this.m_events = new Object();
 			this.m_spaces = new Object();
+			this.m_dataSets = new Object();
 			// 
 			super( a_name );
         }
 		/**public function：對外公開函數*/
 		// 系統命令
 		/**
-     	 * <P>Initial all <code>RMSpace</code> in <code>RMModule</code>.</P>
+     	 * <P>Initial all <code>IRMSpace</code> in <code>IRMModule</code>.</P>
       	 */
 		public function Initial( a_params : Object = null ) : void
 		{
 			this.NotifyTo(RMNotify.INITIAL, this.m_spaces, "", a_params);
 		}
 		/**
-     	 * <P>Initial a <code>RMActor</code> in <code>RMModule</code>.</P>
+     	 * <P>Initial a <code>IRMActor</code> in <code>IRMModule</code>.</P>
       	 */
 		public function InitialActorByName( a_targetName : String, a_params : Object = null ) : void
 		{
 			this.NotifyTo(RMNotify.INITIAL, this.m_actors, a_targetName, a_params);
 		}
 		/**
-     	 * <P>Initial a <code>RMSpace</code> in <code>RMModule</code>.</P>
+     	 * <P>Initial a <code>IRMSpace</code> in <code>IRMModule</code>.</P>
       	 */
 		public function InitialSpaceByName( a_targetName : String, a_params : Object = null ) : void
 		{
 			this.NotifyTo(RMNotify.INITIAL, this.m_spaces, a_targetName, a_params);
 		}
 		/**
-     	 * <P>Update all <code>RMSpace</code> in <code>RMModule</code>.</P>
+     	 * <P>Update all <code>IRMSpace</code> in <code>IRMModule</code>.</P>
       	 */
 		public function Update( a_params : Object = null, a_targetName : String = "" ) : void
 		{
@@ -86,14 +88,14 @@ package org.gra.model.RuleModel.Core
 			}
 		}
 		/**
-     	 * <P>Draw all <code>RMSpace</code> in <code>RMModule</code>.</P>
+     	 * <P>Draw all <code>IRMSpace</code> in <code>IRMModule</code>.</P>
       	 */
 		public function Draw( a_params : Object = null, a_targetName : String = "" ) : void
 		{
 			this.NotifyTo(RMNotify.DRAW, this.m_spaces, a_targetName, a_params);
 		}
 		/**
-     	 * <P>Enabled all <code>RMSpace</code> in <code>RMModule</code>.</P>
+     	 * <P>Enabled all <code>IRMSpace</code> in <code>IRMModule</code>.</P>
       	 */
 		public function Enabled( a_isEnabled : Boolean = true, a_targetName : String = "" ) : void
 		{
@@ -113,7 +115,7 @@ package org.gra.model.RuleModel.Core
 		}
 		// Actor管理
 		/**
-     	 * <P>Register <code>RMActor</code> in RMModule</P>
+     	 * <P>Register <code>IRMActor</code> in IRMModule</P>
       	 */
 		public function RegisterActor( a_name : String, a_actor : IRMActor ) : void
 		{
@@ -124,7 +126,7 @@ package org.gra.model.RuleModel.Core
 			}
 		}
 		/**
-     	 * <P>Remove <code>RMActor</code> from RMModule</P>
+     	 * <P>Remove <code>IRMActor</code> from IRMModule</P>
       	 */
 		public function RemoveActor( a_name : String ) : IRMActor
 		{
@@ -137,7 +139,7 @@ package org.gra.model.RuleModel.Core
 			return temp;
 		}
 		/**
-     	 * <P>Has <code>RMActor</code> in RMModule</P>
+     	 * <P>Has <code>IRMActor</code> in IRMModule</P>
       	 */
 		public function HasActor( a_name : String ) : Boolean
 		{
@@ -146,7 +148,7 @@ package org.gra.model.RuleModel.Core
 			return false;
 		}
 		/**
-     	 * <P>Retrieve <code>RMActor</code> from RMModule</P>
+     	 * <P>Retrieve <code>IRMActor</code> from IRMModule</P>
       	 */
 		public function RetrieveActor( a_name : String ) : IRMActor
 		{
@@ -154,9 +156,23 @@ package org.gra.model.RuleModel.Core
 				return this.m_actors[a_name];
 			return null;
 		}
+		/**
+     	 * <P>Retrieve all <code>IRMActor</code> name registry in IRMModule</P>
+      	 */
+		public function RetrieveNameRegistryOfActor() : Array
+		{
+			var registry : Array = new Array();
+			var nameStr : String = "";
+			
+			for( nameStr in this.m_actors )
+			{
+				registry.push( nameStr );
+			}
+			return registry;
+		}
 		// Space管理
 		/**
-     	 * <P>Register <code>RMSpace</code> in RMModule</P>
+     	 * <P>Register <code>IRMSpace</code> in IRMModule</P>
       	 */
 		public function RegisterSpace( a_name : String, a_space : IRMSpace ) : void
 		{
@@ -167,7 +183,7 @@ package org.gra.model.RuleModel.Core
 			}
 		}
 		/**
-     	 * <P>Remove <code>RMSpace</code> from RMModule</P>
+     	 * <P>Remove <code>IRMSpace</code> from IRMModule</P>
       	 */
 		public function RemoveSpace( a_name : String) : IRMSpace
 		{
@@ -180,26 +196,40 @@ package org.gra.model.RuleModel.Core
 			return temp;
 		}
 		/**
-     	 * <P>Has <code>RMSpace</code> in RMModule</P>
+     	 * <P>Has <code>IRMSpace</code> in IRMModule</P>
       	 */
-		public function HasSpace( a_name : String) : Boolean
+		public function HasSpace( a_name : String ) : Boolean
 		{
 			if( this.m_spaces[a_name] != undefined )
 				return true;
 			return false;
 		}
 		/**
-     	 * <P>Retrieve <code>RMSpace</code> from RMModule</P>
+     	 * <P>Retrieve <code>IRMSpace</code> from IRMModule</P>
       	 */
-		public function RetrieveSpace( a_name : String) : IRMSpace
+		public function RetrieveSpace( a_name : String ) : IRMSpace
 		{
 			if( this.m_spaces[a_name] != undefined )
 				return this.m_spaces[a_name];
 			return null;
 		}
+		/**
+     	 * <P>Retrieve all <code>IRMSpace</code> name registry in IRMModule</P>
+      	 */
+		public function RetrieveNameRegistryOfSpace() : Array
+		{
+			var registry : Array = new Array();
+			var nameStr : String = "";
+			
+			for( nameStr in this.m_spaces )
+			{
+				registry.push( nameStr );
+			}
+			return registry;
+		}
 		// Event管理
 		/**
-     	 * <P>Register <code>RMEvent</code> in RMModule</P>
+     	 * <P>Register <code>IRMEvent</code> in IRMModule</P>
       	 */
 		public function RegisterEvent( a_name : String, a_event : IRMEvent ) : void
 		{
@@ -210,9 +240,9 @@ package org.gra.model.RuleModel.Core
 			}
 		}
 		/**
-     	 * <P>Remove <code>RMEvent</code> from RMModule</P>
+     	 * <P>Remove <code>IRMEvent</code> from IRMModule</P>
       	 */
-		public function RemoveEvent( a_name : String) : IRMEvent
+		public function RemoveEvent( a_name : String ) : IRMEvent
 		{
 			var temp : IRMEvent = null;
 			if( this.m_events[a_name] != undefined )
@@ -223,21 +253,92 @@ package org.gra.model.RuleModel.Core
 			return temp;
 		}
 		/**
-     	 * <P>Has <code>RMEvent</code> in RMModule</P>
+     	 * <P>Has <code>IRMEvent</code> in IRMModule</P>
       	 */
-		public function HasEvent( a_name : String) : Boolean
+		public function HasEvent( a_name : String ) : Boolean
 		{
 			if( this.m_events[a_name] != undefined )
 				return true;
 			return false;
 		}
 		/**
-     	 * <P>Execute <code>RMEvent</code> from RMModule</P>
+     	 * <P>Execute <code>IRMEvent</code> from IRMModule</P>
       	 */
 		public function ExecuteEvent( a_vars : IRMEventVar ) : void
 		{
 			if( this.m_events[a_vars.getName()] != undefined )
 				this.m_events[a_vars.getName()].Execute(a_vars);
+		}
+		/**
+     	 * <P>Retrieve all <code>IRMEvent</code> name registry in IRMModule</P>
+      	 */
+		public function RetrieveNameRegistryOfEvent() : Array
+		{
+			var registry : Array = new Array();
+			var nameStr : String = "";
+			
+			for( nameStr in this.m_events )
+			{
+				registry.push( nameStr );
+			}
+			return registry;
+		}
+		// DataSet管理
+		/**
+     	 * <P>Register <code>IRMDataSet</code> in IRMModule</P>
+      	 */
+		public function RegisterDataSet( a_name : String, a_dataSet : IRMDataSet ) : void
+		{
+			if( this.m_dataSets[a_name] == undefined )
+			{
+				this.m_dataSets[a_name] = a_dataSet;
+				a_dataSet.RegisterInfo(a_name, this);
+			}
+		}
+		/**
+     	 * <P>Remove <code>IRMDataSet</code> from IRMModule</P>
+      	 */
+		public function RemoveDataSet( a_name : String ) : IRMDataSet
+		{
+			var temp : IRMDataSet = null;
+			if( this.m_dataSets[a_name] != undefined )
+			{
+				temp = this.m_dataSets[a_name];
+				this.m_dataSets[a_name] = undefined;
+			}
+			return temp;
+		}
+		/**
+     	 * <P>Has <code>IRMDataSet</code> in IRMModule</P>
+      	 */
+		public function HasDataSet( a_name : String ) : Boolean
+		{
+			if( this.m_dataSets[a_name] != undefined )
+				return true;
+			return false;
+		}
+		/**
+     	 * <P>Execute <code>IRMDataSet</code> from IRMModule</P>
+      	 */
+		public function RetrieveDataSet( a_name : String ) : IRMDataSet
+		{
+			if( this.m_dataSets[a_name] != undefined )
+				return this.m_dataSets[a_name];
+			return null;
+		}
+		/**
+     	 * <P>Retrieve all <code>IRMDataSet</code> name registry in IRMModule</P>
+      	 */
+		public function RetrieveNameRegistryOfDataSet() : Array
+		{
+			var registry : Array = new Array();
+			var nameStr : String = "";
+			
+			for( nameStr in this.m_dataSets )
+			{
+				registry.push( nameStr );
+			}
+			return registry;
 		}
 		/*
 		* IProxy interface implement.
@@ -294,7 +395,7 @@ package org.gra.model.RuleModel.Core
 		/**private function：私用函數*/
 		/**private event function：私用事件函數*/
 		/**
-     	 * <P>Notify a SIGNAL to one or all <code>RMNotifyDispatcher</code> in target object</P>
+     	 * <P>Notify a SIGNAL to one or all <code>IRMNotifyDispatcher</code> in target object</P>
       	 */
 		protected function NotifyTo( a_notifyName : String, a_target : Object, a_targetName : String = "", a_params : Object = null) : void
 		{

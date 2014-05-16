@@ -21,6 +21,7 @@ package org.gra
 	import org.gra.core.*;
 	import org.gra.view.WindowSection.Interface.*;
 	import org.gra.model.RuleModel.Interface.IRMNotifyDispatcher;
+	import org.gra.model.RuleModel.Interface.IRMModule;
 	import org.gra.model.RuleModel.Core.RMNotify;
 	import org.gra.model.RuleModel.Core.RMNotification;
 	import org.gra.model.RuleModel.Core.RMModule;
@@ -279,6 +280,11 @@ package org.gra
 			return (this.view as GRAView).retrieveWindow( windowName );
 		}
 
+		public function retrieveNameRegistryOfWindow() : Array
+		{
+			return (this.view as GRAView).retrieveNameRegistryOfWindow();
+		}
+		
 		public function removeWindow( windowName:String ) : IWindow
 		{
 			// remove and retrieve the window
@@ -309,6 +315,11 @@ package org.gra
 		{
 			return (this.view as GRAView).retrieveSection( sectionName );
 		}
+		
+		public function retrieveNameRegistryOfSection() : Array
+		{
+			return (this.view as GRAView).retrieveNameRegistryOfSection();
+		}
 
 		public function removeSection( sectionName:String ) : ISection
 		{
@@ -323,7 +334,7 @@ package org.gra
 		/**
 		 * Facade module function
 		 */
-		public function registerModule( a_module : RMModule ) : void
+		public function registerModule( a_module : IRMModule ) : void
 		{
 			// register the module to application timer
 			this.registerTimerToRuleModel( a_module );
@@ -333,15 +344,20 @@ package org.gra
 			(this.model as GRAModel).registerModule( a_module );
 		}
 
-		public function retrieveModule( moduleName:String ) : RMModule
+		public function retrieveModule( moduleName:String ) : IRMModule
 		{
 			return (this.model as GRAModel).retrieveModule( moduleName );
 		}
+		
+		public function retrieveNameRegistryOfModule() : Array
+		{
+			return (this.model as GRAModel).retrieveNameRegistryOfModule();
+		}
 
-		public function removeModule( moduleName:String ) : RMModule
+		public function removeModule( moduleName:String ) : IRMModule
 		{
 			// remove and retrieve the module
-			var temp : RMModule = (this.model as GRAModel).removeModule( moduleName );
+			var temp : IRMModule = (this.model as GRAModel).removeModule( moduleName );
 			
 			// if have retrieve than remove module from application timer
 			if( temp != null )

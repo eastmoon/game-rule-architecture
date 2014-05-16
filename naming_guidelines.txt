@@ -19,6 +19,7 @@ Variable :
 Function : 
 	Xxx : class method, pper-case the first character of each word, e.g. Action().
 	get/setXxx : get or set attribute, argument variable and return variable must the same type, e.g. getType() / setType().
+	toXxx : Transfer to Xxx data type.
 	onXxx : event callback function, e.g. onClick().
 	register/remove/retrieve/hasXxx : The API function of architecture application core, it is follow PureMVC naming guidelines, e.g. registerWindow().
 

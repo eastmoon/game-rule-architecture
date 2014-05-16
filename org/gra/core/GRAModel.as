@@ -6,7 +6,9 @@
 package org.gra.core
 {
 	import org.puremvc.as3.core.Model;
+	import org.gra.model.RuleModel.Interface.IRMModule;
 	import org.gra.model.RuleModel.Core.RMModule;
+	import org.puremvc.as3.interfaces.IProxy;
 
     /**
      * Create and register <code>Proxy</code>s with the <code>Model</code>.
@@ -22,41 +24,63 @@ package org.gra.core
 		
 		// RMModule manage functional
 		/**
-		 * Register an <code>RMModule</code> instance with the <code>GRAModel</code>.
+		 * Register an <code>IRMModule</code> instance with the <code>GRAModel</code>.
+		 * Input module must implements IRMModule and IProxy.
 		 * 
 		 * <P>
 		 * Call Proxy functional from Model, but need check it isn't Proxy.
 		 * 
 		 * @param module a reference to the <code>RMModule</code> instance
 		 */
-		public function registerModule( a_module : RMModule ) : void
+		public function registerModule( a_module : IRMModule ) : void
 		{
-			this.registerProxy( a_module );
+			this.registerProxy( a_module as IProxy );
 		}
 
 		/**
-		 * Retrieve an <code>RMModule</code> from the <code>GRAModel</code>.
+		 * Retrieve an <code>IRMModule</code> from the <code>GRAModel</code>.
 		 * 
 		 * @param moduleName the name of the <code>RMModule</code> instance to retrieve.
 		 * @return the <code>RMModule</code> instance previously registered with the given <code>moduleName</code>.
 		 */
-		public function retrieveModule( a_moduleName:String ) : RMModule
+		public function retrieveModule( a_moduleName:String ) : IRMModule
 		{
-			return this.retrieveProxy( a_moduleName ) as RMModule;
+			return this.retrieveProxy( a_moduleName ) as IRMModule;
 		}
-
+		
 		/**
-		 * Remove an <code>RMModule</code> from the <code>GRAModel</code>.
+		 * Retrieve all <code>IRMModule</code> name registry in <code>GRAModel</code>.
+		 * 
+		 * @return the name list.
+		 */
+		public function retrieveNameRegistryOfModule() : Array
+		{
+			var registry : Array = new Array();
+			var target : IRMModule = null;
+			var nameString : String = "";
+			
+			for( nameString in this.proxyMap )
+			{
+				target = this.proxyMap[ nameString ] as IRMModule;
+				if( target != null )
+					registry.push( target.getName() );
+			}
+			
+			return registry;
+		}
+		
+		/**
+		 * Remove an <code>IRMModule</code> from the <code>GRAModel</code>.
 		 *
 		 * PS. use remove proxy function can remove module, but use remove module function can't remove proxy.
 		 *
-		 * @param moduleName the name of the <code>RMModule</code> instance to retrieve.
-		 * @return the <code>RMModule</code> that was removed from the <code>GRAModel</code>
+		 * @param moduleName the name of the <code>IRMModule</code> instance to retrieve.
+		 * @return the <code>IRMModule</code> that was removed from the <code>GRAModel</code>
 		 */
-		public function removeModule( a_moduleName:String ) : RMModule
+		public function removeModule( a_moduleName:String ) : IRMModule
 		{
 			if( this.hasModule( a_moduleName ) )
-				return this.removeProxy( a_moduleName ) as RMModule;
+				return this.removeProxy( a_moduleName ) as IRMModule;
 			return null;
 		}
 		
