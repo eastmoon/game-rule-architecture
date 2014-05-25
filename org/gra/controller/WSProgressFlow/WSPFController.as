@@ -3,7 +3,7 @@
 		- Game Rule Architecture kernel code.
 		
 	Date:
-		- 2013.02.08
+		- 2014.05.25
 		
 	Author:
 		- Name : Jacky Chen 
@@ -77,12 +77,24 @@ package org.gra.controller.WSProgressFlow
 		/**public function：對外公開函數*/
 		public override function Clone( a_clone : IProgressController = null ) : IProgressController
 		{
-			var clone : WSPFController = new WSPFController( this.m_windowName,
-															this.m_targetName,
-															this.m_sourceName,
-															this.m_loaderName,
-															this.m_params,
-															this.getProgress() );
+			var clone : WSPFController = null;
+			if( a_clone != null )
+			{
+				clone = a_clone as WSPFController;
+				clone.setWindowName( this.m_windowName );
+				clone.setTargetName( this.m_targetName );
+				clone.setSourceName( this.m_sourceName );
+				clone.setLoaderName( this.m_loaderName );
+			}
+			else
+			{
+				clone = new WSPFController( this.m_windowName,
+										   this.m_targetName,
+										   this.m_sourceName,
+										   this.m_loaderName,
+										   this.getParams(),
+										   this.getProgress() );
+			}
 			
 			// 複製父層資訊
 			super.Clone( clone );

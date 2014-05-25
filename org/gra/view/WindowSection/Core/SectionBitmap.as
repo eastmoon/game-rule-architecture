@@ -3,7 +3,7 @@
 		- Game Rule Architecture kernel code.
 		
 	Date:
-		- 2013.02.08
+		- 2014.05.25
 		
 	Author:
 		- Name : Jacky Chen 
@@ -246,15 +246,21 @@ package org.gra.view.WindowSection.Core
 		}
 		public function setWindow( a_window : IWindow ) : void
 		{
-			// 若指定視窗的內容為自己，且傳入與當前視窗不重複。
-			if( a_window.getSection() == this && a_window != this.m_window )
+			// 傳入為清空
+			if( a_window == null )
 			{
-				// 原始視窗的內容清空
-				if( this.m_window != null )
+				// 原視窗仍指向自身
+				if( this.m_window.getSection() == this )
 					this.m_window.setSection( null );
-				
+				else
+					this.m_window = a_window;
+			}
+			// 若指定視窗的內容為自己，且傳入與當前視窗不重複。
+			else if( a_window != this.m_window )
+			{				
 				// 儲存當前視窗
 				this.m_window = a_window;
+				this.m_window.setSection( this );
 			}
 		}
 		/*private event function：私用事件函數*/

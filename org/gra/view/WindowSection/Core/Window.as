@@ -3,7 +3,7 @@
 		- Game Rule Architecture kernel code.
 		
 	Date:
-		- 2013.02.08
+		- 2014.05.25
 		
 	Author:
 		- Name : Jacky Chen 
@@ -234,7 +234,11 @@ package org.gra.view.WindowSection.Core
 				   && ( this.m_section.getViewComponent() as DisplayObject ).parent == this )
 				{
 					this.removeChild( this.m_section.getViewComponent() as DisplayObject );
+					var oldSection : ISection= this.m_section;
+					this.m_section = null;
+					oldSection.setWindow( null );
 				}
+				
 				// 保存
 				this.m_section = a_section;
 			
