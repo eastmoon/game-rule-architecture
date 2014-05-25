@@ -72,43 +72,50 @@ package org.gra.view.WindowSection.Core
 		// 顯示內容進場，Progress Flow 控制函數
 		public function Display( a_flow : IProgressController = null ) : void
 		{
-			a_flow.Next();
+			if( a_flow != null )
+				a_flow.Next();
 		}
 		
 		// 顯示內容退場，Progress Flow 控制函數
 		public function Disappear( a_flow : IProgressController = null ) : void
 		{
-			a_flow.Next();
+			if( a_flow != null )
+				a_flow.Next();
 		}
 		
 		// 載入處理，Progress Flow 控制函數
 		public function Loading( a_flow : IProgressController = null ) : void
 		{
-			a_flow.Next();
+			if( a_flow != null )
+				a_flow.Next();
 		}
 		
 		// 初始化數據，Progress Flow 控制函數
 		public function Initial( a_flow : IProgressController = null ) : void
 		{
-			a_flow.Next();
+			if( a_flow != null )
+				a_flow.Next();
 		}
 		
 		// 關閉內容，Progress Flow 控制函數
 		public function Close( a_flow : IProgressController = null ) : void
 		{
-			a_flow.Next();
+			if( a_flow != null )
+				a_flow.Next();
 		}
 		
 		// 前置處理，Progress Flow 控制函數
 		public function PreProcess( a_flow : IProgressController = null ) : void
 		{
-			a_flow.Next();
+			if( a_flow != null )
+				a_flow.Next();
 		}
 		
 		// 完成處理，Progress Flow 控制函數
 		public function CompleteProcess( a_flow : IProgressController = null ) : void
 		{
-			a_flow.Next();
+			if( a_flow != null )
+				a_flow.Next();
 		}
 		
 		/*
