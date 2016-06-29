@@ -1,4 +1,4 @@
-Variable :
+﻿Variable :
 
  - Definition by life cycle :
 	m_ : class member variable, e.g. m_data. 
@@ -27,3 +27,14 @@ Class :
 	XxxYyy : class name, upper-case the first character of each word, e.g. MyClass.
 	XXXYyy : The XXX space-name for class name, XXX is an abbreviation, e.g. GMyClass.
 	IXxxYyy : interface, upper-case an "i" at the string first character, e.g. IMyClass.
+
+
+※ 相關文章參考：
+---------------------------
+PureMVC Moves to GitHub
+http://puremvc.org/
+
+PureMVC（AS3）剖析：实例
+http://www.cnblogs.com/skynet/archive/2013/01/29/2881244.html
+---------------------------
+
