@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using GameRuleArchitecture.Core;
+using GameRuleArchitecture;
 
 namespace Game.Framework
 {
@@ -11,7 +11,9 @@ namespace Game.Framework
         public static ApplicationCore getInstance() {
             if (mInstance == null)
                 mInstance = new ApplicationCore();
-            return mInstance; }
+            return mInstance;
+        }
+
         // Singletion pattern :
         // Constructor
         private ApplicationCore()
@@ -24,11 +26,10 @@ namespace Game.Framework
         {
             Debug.Log("Application system startup.");
             
-            // Startup game rule application
+            // Startup game rule architecture.
             ApplicationFacade facade = ApplicationFacade.getInstance();
             facade.RegisterCommand(ApplicationFacade.EVENT_STARTUP, typeof(Game.Framework.Controller.StartupCommand));
             facade.Startup(null);
-
             return this;
         }
         // Module startup method

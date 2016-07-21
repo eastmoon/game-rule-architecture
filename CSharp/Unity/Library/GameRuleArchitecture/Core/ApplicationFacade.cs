@@ -21,11 +21,11 @@ using System.Linq;
 using System.Text;
 
 using PureMVC.Patterns;
-using GameRuleArchitecture.Core.Kernel;
+using GameRuleArchitecture.Core;
 
-namespace GameRuleArchitecture.Core
+namespace GameRuleArchitecture
 {
-    class ApplicationFacade : Facade
+    public class ApplicationFacade : Facade
     {
 
         #region Accessors
