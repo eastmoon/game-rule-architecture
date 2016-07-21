@@ -5,8 +5,6 @@ using System.Text;
 
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
-using UnityEditor;
 
 namespace Game.Framework.View.Builder.StandardComponent
 {
@@ -44,7 +42,11 @@ namespace Game.Framework.View.Builder.StandardComponent
             rect.sizeDelta = new Vector2(160, 30);
             // Defined background
             Image img = obj.AddComponent<Image>();
-            Sprite sprite = AssetDatabase.GetBuiltinExtraResource<Sprite>("UI/Skin/UISprite.psd");
+            // Retrieve UISprite in database within Editor
+            Sprite sprite = null;
+#if UNITY_EDITOR
+            sprite = UnityEditor.AssetDatabase.GetBuiltinExtraResource<Sprite>("UI/Skin/UISprite.psd");
+#endif
             img.sprite = sprite;
             img.type = Image.Type.Sliced;
             // Defined button UI system
