@@ -21,9 +21,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace GameRuleArchitecture.Core
+using PureMVC.Core;
+
+namespace GameRuleArchitecture.Core.Kernel
 {
-    public class GRAController : PureMVC.Core.Controller
+    class GRAController : Controller
     {
         #region Accessors
 

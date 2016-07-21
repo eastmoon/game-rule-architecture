@@ -20,12 +20,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using PureMVC.Patterns;
 using PureMVC.Interfaces;
-using GameRuleArchitecture.Interfaces;
 
-namespace GameRuleArchitecture.Patterns
+namespace GameRuleArchitecture.Pattern
 {
-    public class Subject : CommonObserver, ISubject
+    class Subject : Observer
     {
         #region Member variable
         private string mNotificationName;
@@ -120,32 +120,6 @@ namespace GameRuleArchitecture.Patterns
         }
         #endregion
 
-        #region IObserver Members
-
-        /// <summary>
-        /// Notify the interested object
-        /// </summary>
-        /// <remarks>This method is thread safe</remarks>
-        /// <param name="notification">The <c>INotification</c> to pass to the interested object's notification method</param>
-        public override void NotifyObserver(INotification _notification)
-        {
-            // Check notification is send to right subject. 
-            if (_notification != null && this.mNotificationName.Equals(_notification.Name))
-            {
-                // Send notification to all observer in the subject.
-                for (int i = 0; i < this.mObservers.Count; i++)
-                {
-                    ObserverInfo info = this.mObservers[i] as ObserverInfo;
-                    if (info != null && info.Observer != null)
-                    {
-                        info.Observer.NotifyObserver(_notification);
-                    }
-                }
-            }
-        }
-
-        #endregion
-
         #endregion
 
         #region Private method
@@ -154,7 +128,7 @@ namespace GameRuleArchitecture.Patterns
         /// <summary>
         /// Register observer info in subject.
         /// </summary>
-        private bool Register(ObserverInfo _info)
+        private bool Register(ObserverInfo _observer)
         {
             //skip dupilcates
             bool isDuplicate = false;
@@ -162,13 +136,13 @@ namespace GameRuleArchitecture.Patterns
             for (int i = 0; i < this.mObservers.Count && !isDuplicate; i++)
             {
                 ObserverInfo info = this.mObservers[i] as ObserverInfo;
-                if (info != null && info.CompareInfo(_info))
+                if (info != null && info.CompareInfo(_observer))
                     isDuplicate = true;
             }
 
             // register
             if (!isDuplicate)
-                this.mObservers.Add(_info);
+                this.mObservers.Add(_observer);
 
             // return duplicate state.
             return isDuplicate;
@@ -194,6 +168,33 @@ namespace GameRuleArchitecture.Patterns
 
         #endregion
 
+        #region IObserver Members
+
+        /// <summary>
+        /// Notify the interested object
+        /// </summary>
+        /// <remarks>This method is thread safe</remarks>
+        /// <param name="notification">The <c>INotification</c> to pass to the interested object's notification method</param>
+        public override void NotifyObserver(INotification _notification)
+        {
+            // Check notification is send to right subject. 
+            if(this.mNotificationName.Equals(_notification.Name))
+            { 
+                // Send notification to all observer in the subject.
+                for (int i = 0; i < this.mObservers.Count; i++)
+                {
+                    ObserverInfo info = this.mObservers[i] as ObserverInfo;
+                    if(info != null && info.Observer != null)
+                    {
+                        info.Observer.NotifyObserver(_notification);
+                    }
+                }
+            }
+        }
+
+        #endregion
+
+
         #region Accessors
 
         /// <summary>
@@ -206,20 +207,10 @@ namespace GameRuleArchitecture.Patterns
                 // Setting and getting of reference types is atomic, no need to lock here
                 return this.mNotificationName;
             }
-            protected set
+            set
             {
                 // Setting and getting of reference types is atomic, no need to lock here
                 this.mNotificationName = value;
-            }
-        }
-        /// <summary>
-        /// <P>[Read-only]Get the number of observer in subject.</P>
-        /// </summary>
-        public virtual int Count
-        {
-            get
-            {
-                return this.mObservers.Count;
             }
         }
 
@@ -239,7 +230,7 @@ namespace GameRuleArchitecture.Patterns
             {
                 this.mMethod = _method;
                 this.mContext = _context;
-                this.mObserver = new CommonObserver(_method, _context);
+                this.mObserver = new Observer(_method, _context);
             }
             public ObserverInfo(string _method, object _context, IObserver _observer)
             {

@@ -28,7 +28,7 @@ namespace PureMVC.Patterns
 		#region Constructors
 
 		/// <summary>
-        /// Constructs a new notification with the specified name, default body and type    
+        /// Constructs a new notification with the specified name, default body and type
         /// </summary>
         /// <param name="name">The name of the <c>Notification</c> instance</param>
         public Notification(string name)
