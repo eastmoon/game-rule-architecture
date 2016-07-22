@@ -30,10 +30,10 @@ namespace GameRuleArchitecture.Patterns
     public class Pipe : Filter, IPipe
     {
         #region Static member
-        public static string STEP_START = "pattern.progress.pipe.step.start";
-        public static string STEP_GOTO = "pattern.progress.pipe.step.goto";
-        public static string STEP_COMPLETE = "pattern.progress.pipe.step.end";
-        public static string STEP_ERROR = "pattern.progress.pipe.step.error";
+        public static string STATE_START = "pattern.progress.pipe.step.start";
+        public static string STATE_GOTO = "pattern.progress.pipe.step.goto";
+        public static string STATE_COMPLETE = "pattern.progress.pipe.step.end";
+        public static string STATE_ERROR = "pattern.progress.pipe.step.error";
         #endregion
 
         #region Variable member
@@ -141,7 +141,7 @@ namespace GameRuleArchitecture.Patterns
         /// </summary>
         public override void Execute(IProgress _progress)
         {
-            this.Execute(_progress, Pipe.STEP_START);
+            this.Execute(_progress, Pipe.STATE_START);
         }
 
         /// <summary>
@@ -167,22 +167,22 @@ namespace GameRuleArchitecture.Patterns
         {
             ISubject state = null;
             // Setting start state
-            state = new Subject(Pipe.STEP_START);
+            state = new Subject(Pipe.STATE_START);
             state.Register(this.onPipeStart);
             this.StateEventListener.Register(state);
 
             // Setting start state
-            state = new Subject(Pipe.STEP_GOTO);
+            state = new Subject(Pipe.STATE_GOTO);
             state.Register(this.onPipeGoto);
             this.StateEventListener.Register(state);
 
             // Setting complete state
-            state = new Subject(Pipe.STEP_COMPLETE);
+            state = new Subject(Pipe.STATE_COMPLETE);
             state.Register(this.onPipeComplete);
             this.StateEventListener.Register(state);
 
             // Setting error state
-            state = new Subject(Pipe.STEP_ERROR);
+            state = new Subject(Pipe.STATE_ERROR);
             state.Register(this.onPipeError);
             this.StateEventListener.Register(state);
 
@@ -254,7 +254,7 @@ namespace GameRuleArchitecture.Patterns
         /// <summary>
         /// <P>[Read-only]Get the state event listener object</P>
         /// </summary>
-        protected ISubjectContainer StateEventListener
+        public ISubjectContainer StateEventListener
         {
             get { return this.mStateEventListener; }
         }

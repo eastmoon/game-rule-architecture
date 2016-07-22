@@ -43,16 +43,16 @@ namespace GameRuleArchitecture.Patterns
             if ( this.Pipe != null && this.mCurrentIndex >= 0 && this.mCurrentIndex < this.Pipe.Count )
             { 
                 // 2. if still have filter in count, goto.
-                this.mPipe.Execute(this, Patterns.Pipe.STEP_GOTO);
+                this.mPipe.Execute(this, Patterns.Pipe.STATE_GOTO);
             }
             else if(this.Pipe != null )
             {
                 // 3. if didn't have filter, complete
-                this.mPipe.Execute(this, Patterns.Pipe.STEP_COMPLETE);
+                this.mPipe.Execute(this, Patterns.Pipe.STATE_COMPLETE);
             }
         }
         /// <summary>
-        /// Goto assign step, if step in pipe.
+        /// Goto assign filter, if filter in pipe.
         /// </summary>
         public void Goto(string _filterName)
         {
@@ -72,7 +72,7 @@ namespace GameRuleArchitecture.Patterns
             if (filterID < this.Pipe.Routes.Count)
             { 
                 this.mCurrentIndex = filterID;
-                this.mPipe.Execute(this, Patterns.Pipe.STEP_GOTO);
+                this.mPipe.Execute(this, Patterns.Pipe.STATE_GOTO);
             }
         }
         /// <summary>
@@ -85,7 +85,7 @@ namespace GameRuleArchitecture.Patterns
                 return;
 
             // call complete state.
-            this.mPipe.Execute(this, Patterns.Pipe.STEP_COMPLETE);
+            this.mPipe.Execute(this, Patterns.Pipe.STATE_COMPLETE);
         }
         /// <summary>
         /// Set error state, auto-goto pipe error process.
@@ -99,7 +99,7 @@ namespace GameRuleArchitecture.Patterns
             // 1. Saving message
             this.mErrorMessage = _message;
             // 2. Call error state.
-            this.mPipe.Execute(this, Patterns.Pipe.STEP_ERROR);
+            this.mPipe.Execute(this, Patterns.Pipe.STATE_ERROR);
         }
         #endregion
 

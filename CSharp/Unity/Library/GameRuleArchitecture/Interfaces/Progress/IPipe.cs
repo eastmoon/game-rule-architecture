@@ -72,6 +72,11 @@ namespace GameRuleArchitecture.Interfaces
         /// <P>[Read-only]Get the route map in pipe, which is store filter.</P>
         /// </summary>
         ArrayList Routes { get; }
+
+        /// <summary>
+        /// <P>[Read-only]Get the state event listener object</P>
+        /// </summary>
+        ISubjectContainer StateEventListener { get; }
         #endregion
     }
 }
