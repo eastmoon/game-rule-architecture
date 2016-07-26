@@ -19,13 +19,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using GameRuleArchitecture.Core.Model.Interface;
+using GameRuleArchitecture.Interfaces;
 
-namespace GameRuleArchitecture.Core.Model.Object
+namespace GameRuleArchitecture.Core.Model
 {
     public class RMObject : System.Object, IRMObject
     {
-        #region Variable member
+        #region Member variable
         private string mName;
         private IRMModule mModule;
         #endregion

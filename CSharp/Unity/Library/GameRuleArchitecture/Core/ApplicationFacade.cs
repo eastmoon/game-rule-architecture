@@ -51,7 +51,7 @@ namespace GameRuleArchitecture
 
         #region Notification
         // Notification name constants
-        public static String EVENT_STARTUP = "startup";
+        public const String EVENT_STARTUP = "startup";
 
         /**
 		 * Start the Application

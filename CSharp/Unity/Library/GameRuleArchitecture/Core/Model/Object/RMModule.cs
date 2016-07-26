@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using GameRuleArchitecture.Core.Model.Interface;
+using GameRuleArchitecture.Interfaces;
 
-namespace GameRuleArchitecture.Core.Model.Object
+namespace GameRuleArchitecture.Core.Model
 {
     public class RMModule : RMNofityDispatcher, IRMModule
     {
-        #region Variable member
+        #region Member variable
         #endregion
 
         #region Constructor

@@ -107,6 +107,11 @@ namespace GameRuleArchitecture.TestCase
             container.Register(sub1);
             container.Register(sub2);
             container.Register(sub3);
+            IList<string> list = container.ListSubjectInterests;
+            for(int i = 0; i < list.Count; i++)
+            {
+                this.Result += "Subject name : " + list[i] + " \n";
+            }
             this.Result += "Total subject : " + container.Count + " \n";
 
             // Remove subject

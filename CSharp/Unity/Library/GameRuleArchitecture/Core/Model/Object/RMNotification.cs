@@ -21,13 +21,13 @@ using System.Linq;
 using System.Text;
 
 using PureMVC.Patterns;
-using GameRuleArchitecture.Core.Model.Interface;
+using GameRuleArchitecture.Interfaces;
 
-namespace GameRuleArchitecture.Core.Model.Object
+namespace GameRuleArchitecture.Core.Model
 {
     public class RMNotification : Notification, IRMNotification
     {
-        #region Variable member
+        #region Member variable
         private IRMNotifyDispatcher mNotifier;
         #endregion
 

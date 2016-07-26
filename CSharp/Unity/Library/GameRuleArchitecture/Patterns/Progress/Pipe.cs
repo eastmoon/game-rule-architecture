@@ -30,13 +30,13 @@ namespace GameRuleArchitecture.Patterns
     public class Pipe : Filter, IPipe
     {
         #region Static member
-        public static string STATE_START = "pattern.progress.pipe.step.start";
-        public static string STATE_GOTO = "pattern.progress.pipe.step.goto";
-        public static string STATE_COMPLETE = "pattern.progress.pipe.step.end";
-        public static string STATE_ERROR = "pattern.progress.pipe.step.error";
+        public const string STATE_START = "pattern.progress.pipe.step.start";
+        public const string STATE_GOTO = "pattern.progress.pipe.step.goto";
+        public const string STATE_COMPLETE = "pattern.progress.pipe.step.end";
+        public const string STATE_ERROR = "pattern.progress.pipe.step.error";
         #endregion
 
-        #region Variable member
+        #region Member variable
         private Hashtable mFilters;
         private ArrayList mRoutes;
         private ArrayList mProgress;

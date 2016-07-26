@@ -23,6 +23,9 @@ namespace Game.Framework.Controller
 
             // Test Case : Progress
             new Test_Pattern_Progress();
+
+            // Test Case : Core controller
+            new Test_Core_Controller_filter();
         }
     }
 }

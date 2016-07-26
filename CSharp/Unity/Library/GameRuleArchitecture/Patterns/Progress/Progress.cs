@@ -14,7 +14,7 @@ namespace GameRuleArchitecture.Patterns
         public static string NOTIFICATION_TYPE = "pattern.progress.notification.type";
         #endregion
 
-        #region Variable member
+        #region Member variable
         private IPipe mPipe;
         private int mProgressIndex;
         private int mCurrentIndex;

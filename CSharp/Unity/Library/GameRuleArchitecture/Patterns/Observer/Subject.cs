@@ -129,8 +129,8 @@ namespace GameRuleArchitecture.Patterns
         /// <param name="notification">The <c>INotification</c> to pass to the interested object's notification method</param>
         public override void NotifyObserver(INotification _notification)
         {
-            // Check notification is send to right subject. 
-            if (_notification != null && this.mNotificationName.Equals(_notification.Name))
+            // Check notification isn't null. 
+            if (_notification != null)
             {
                 // Send notification to all observer in the subject.
                 for (int i = 0; i < this.mObservers.Count; i++)

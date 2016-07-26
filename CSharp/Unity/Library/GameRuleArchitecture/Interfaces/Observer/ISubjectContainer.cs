@@ -52,6 +52,11 @@ namespace GameRuleArchitecture.Interfaces
         /// </summary>
         int Count { get; }
 
+        /// <summary>
+        /// <P>[Read-only]Get the list of subject name in container.</P>
+        /// </summary>
+        IList<string> ListSubjectInterests { get; }
+
         #endregion
     }
 }

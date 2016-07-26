@@ -23,13 +23,12 @@ using System.Text;
 using PureMVC.Interfaces;
 using GameRuleArchitecture.Interfaces;
 using GameRuleArchitecture.Patterns;
-using GameRuleArchitecture.Core.Model.Interface;
 
-namespace GameRuleArchitecture.Core.Model.Object
+namespace GameRuleArchitecture.Core.Model
 {
     public class RMNofityDispatcher : RMObject, IRMNotifyDispatcher
     {
-        #region Variable member
+        #region Member variable
         private bool mIsEnabled;
         private ISubjectContainer mContainer;
         #endregion

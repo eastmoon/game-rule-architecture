@@ -19,7 +19,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace GameRuleArchitecture.Core.Model.Object
+namespace GameRuleArchitecture.Core.Model
 {
     public class RMNotify
     {
@@ -27,22 +27,22 @@ namespace GameRuleArchitecture.Core.Model.Object
         /**
      	 * <P>Notify initial msg to target.</P>
       	 */
-        public static string INITIAL = "GameRuleArchitecture.Model.Initial";
+        public const string INITIAL = "GameRuleArchitecture.Model.Initial";
         /**
      	 * <P>Notify update msg to target.</P>
       	 */
-        public static string UPDATE = "GameRuleArchitecture.Model.Update";
+        public const string UPDATE = "GameRuleArchitecture.Model.Update";
 		/**
      	 * <P>Notify draw msg to target.</P>
       	 */
-		public static string DRAW = "GameRuleArchitecture.Model.Draw";
+		public const string DRAW = "GameRuleArchitecture.Model.Draw";
 		/**
      	 * <P>Notify enabled msg to target, when target notify system is enabled or disabled.</P>
 		 * <p>Notification body info:</p>
 		 * <p>body.context</p>
 		 * <p>body.params.isEnabled</p>
       	 */
-		public static string ENABLED = "GameRuleArchitecture.Model.Enabled";
+		public const string ENABLED = "GameRuleArchitecture.Model.Enabled";
 		#endregion
     }
 }

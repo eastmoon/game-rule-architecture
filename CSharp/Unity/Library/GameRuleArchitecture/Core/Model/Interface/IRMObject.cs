@@ -19,7 +19,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace GameRuleArchitecture.Core.Model.Interface
+namespace GameRuleArchitecture.Interfaces
 {
     public interface IRMObject
     {

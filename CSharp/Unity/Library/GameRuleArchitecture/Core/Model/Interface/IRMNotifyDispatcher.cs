@@ -21,7 +21,7 @@ using System.Text;
 
 using PureMVC.Interfaces;
 
-namespace GameRuleArchitecture.Core.Model.Interface
+namespace GameRuleArchitecture.Interfaces
 {
     public interface IRMNotifyDispatcher : IRMObject
     {

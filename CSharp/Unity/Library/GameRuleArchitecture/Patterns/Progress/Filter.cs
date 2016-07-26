@@ -22,6 +22,7 @@ using System.Text;
 
 using UnityEngine;
 
+using PureMVC.Interfaces;
 using PureMVC.Patterns;
 using GameRuleArchitecture.Interfaces;
 
@@ -29,7 +30,7 @@ namespace GameRuleArchitecture.Patterns
 {
     public class Filter : SimpleCommand, IFilter
     {
-        #region Variable member
+        #region Member variable
         private string mName;
         #endregion
 
@@ -46,6 +47,7 @@ namespace GameRuleArchitecture.Patterns
         /// </summary>
         public virtual void Execute(IProgress _progress)
         {
+            this.Execute(_progress as INotification);
         }
         #endregion
 

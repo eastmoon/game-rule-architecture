@@ -105,6 +105,17 @@ namespace GameRuleArchitecture.Patterns
             }
         }
 
+        /// <summary>
+        /// <P>[Read-only]Get the list of subject name in container.</P>
+        /// </summary>
+        public IList<string> ListSubjectInterests
+        {
+            get
+            {
+                IList<string> result = new List<string>(this.mSubjects.Keys.Cast<string>());
+                return result;
+            }
+        }
         #endregion
     }
 }

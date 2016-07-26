@@ -20,14 +20,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using GameRuleArchitecture.Core.Model.Interface;
-using GameRuleArchitecture.Core.Model.Object;
+using GameRuleArchitecture.Interfaces;
+using GameRuleArchitecture.Core.Model;
 
-namespace GameRuleArchitecture.Core.Model.Object.Notifications
+namespace GameRuleArchitecture.Core.Model.Notifications
 {
     public class RMEnabledNotification : RMNotification
     {
-        #region Variable member
+        #region Member variable
         private bool mEnabled;
         #endregion
 
